@@ -1,0 +1,49 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Update Account - SkyLearn Admin{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .card {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+        .btn-block {
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper d-flex justify-content-center">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Modifier un Utilisateur</h4>
+                    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+                    <a href="{{ path('app_user_index') }}" class="btn btn-secondary btn-block">Annuler</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

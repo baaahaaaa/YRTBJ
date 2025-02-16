@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ComplaintResponse{% endblock %}
+
+{% block body %}
+    <h1>ComplaintResponse</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ complaint_response.id }}</td>
+            </tr>
+            <tr>
+                <th>Response</th>
+                <td>{{ complaint_response.Response }}</td>
+            </tr>
+            <tr>
+                <th>DateResponse</th>
+                <td>{{ complaint_response.DateResponse ? complaint_response.DateResponse|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Email_sender</th>
+                <td>{{ complaint_response.EmailSender }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_complaint_response_index') }}">back to list</a>
+
+    <a href="{{ path('app_complaint_response_edit', {'id': complaint_response.id}) }}">edit</a>
+
+    {{ include('complaint_response/_delete_form.html.twig') }}
+{% endblock %}

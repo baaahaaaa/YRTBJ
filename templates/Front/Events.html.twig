@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Events - SkyLearn{% endblock %}
+
+{% block nav %}
+    <nav id="navmenu" class="navmenu">
+        <ul>
+            <li><a href="{{ path('home') }}">Home</a></li>
+            <li><a href="{{ path('about') }}">About</a></li>
+            <li><a href="{{ path('courses') }}">Courses</a></li>
+            <li><a href="{{ path('tutors') }}">Tutors</a></li>
+            <li><a href="{{ path('events') }}" class="active">Events</a></li>
+            <li><a href="{{ path('internships') }}">Internship</a></li>
+            <li><a href="{{ path('contact') }}">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+{% endblock %}
+        
+{% block body %}
+<main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Events</h1>
+                        <p class="mb-0">Our events are crafted to enhance your learning experience by giving you access to industry experts, networking opportunities, workshops, and live Q&A sessions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="{{ path('home') }}">Home</a></li>
+                    <li class="current">Events</li>
+                </ol>
+            </div>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Events Section -->
+    <section id="events" class="events section">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="{{ asset('img/events-item-1.jpg') }}" alt="Introduction to Web Design">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="#">Introduction to Web Design</a></h5>
+                            <p class="fst-italic text-center">Sunday, September 26th at 7:00 pm</p>
+                            <p class="card-text">This comprehensive Website Design course is tailored for beginners and aspiring web designers who want to create visually stunning, user-friendly, and responsive websites. Covering both UI/UX design principles and front-end development, this course provides a solid foundation in modern web design techniques.</p>
+                            <a href="{{ path('reservation') }}" class="btn btn-primary">Reservation</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="{{ asset('img/events-item-2.jpg') }}" alt="Marketing Strategies">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="#">Marketing Strategies</a></h5>
+                            <p class="fst-italic text-center">Sunday, November 15th at 7:00 pm</p>
+                            <p class="card-text">Students will dive into digital marketing techniques, including social media marketing, SEO, content marketing, email campaigns, and paid advertising (Google Ads & Facebook Ads). They will learn how to analyze marketing data, optimize campaigns for maximum ROI, and craft compelling messages that engage target audiences.</p>
+                            <a href="{{ path('reservation') }}" class="btn btn-primary">Reservation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- /Events Section -->
+
+</main>
+{% endblock %}

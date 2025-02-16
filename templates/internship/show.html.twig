@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Internship{% endblock %}
+
+{% block body %}
+    <h1>Internship</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ internship.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ internship.Title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ internship.Description }}</td>
+            </tr>
+            <tr>
+                <th>CompanyName</th>
+                <td>{{ internship.CompanyName }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ internship.Location }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ internship.Duration }}</td>
+            </tr>
+            <tr>
+                <th>Requirements</th>
+                <td>{{ internship.Requirements }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ internship.Email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_internship_index') }}">back to list</a>
+
+    <a href="{{ path('app_internship_edit', {'id': internship.id}) }}">edit</a>
+
+    {{ include('internship/_delete_form.html.twig') }}
+{% endblock %}

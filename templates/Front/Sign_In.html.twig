@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign In - SkyLearn{% endblock %}
+
+{% block css %}
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Body Styling */
+        body {
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Container */
+        .signin-container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Heading */
+        .signin-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Form Group */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #6c63ff;
+            box-shadow: 0 0 8px rgba(108, 99, 255, 0.4);
+        }
+
+        /* Register Button */
+        .btn-register {
+            background-color: #6c63ff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+        }
+
+        .btn-register:hover {
+            background-color: #5848c2;
+            transform: translateY(-2px);
+        }
+
+        /* Sign Up Link */
+        .signup-link {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .signup-link a {
+            color: #6c63ff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .signup-link a:hover {
+            color: #4b3fbf;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .signin-container {
+                padding: 20px;
+            }
+
+            .btn-register {
+                font-size: 14px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="signin-container">
+        <h2>Sign In</h2>
+        <form action="{{ path('sign_in') }}" method="POST">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn-register">Sign In</button>
+        </form>
+
+        <p class="signup-link">Don't have an account? <a href="{{ path('sign_up') }}">Sign Up</a></p>
+    </div>
+{% endblock %}

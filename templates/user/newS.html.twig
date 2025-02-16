@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign Up - Student | SkyLearn{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="inner">
+            <div class="container">
+                <div class="img-holder">
+                    <img src="{{ asset('img/student.jpg') }}" alt="Student">
+                </div>
+
+<form method="post">
+      {{ form_start(form) }}
+    <h3>Student Registration Form</h3>
+    
+    <div class="form-wrapper">
+        {{ form_widget(form.FirstName, {'attr': {'placeholder': 'First Name', 'class': 'form-control'}}) }}
+        {{ form_errors(form.FirstName) }}
+    </div>
+    <div class="form-wrapper">
+        
+        {{ form_widget(form.LastName, {'attr': {'placeholder': 'Last Name', 'class': 'form-control'}}) }}
+        {{ form_errors(form.LastName) }}
+
+    </div>
+
+    <div class="form-wrapper">
+        {{ form_widget(form.Email, {'attr': {'placeholder': 'Email Address', 'class': 'form-control'}}) }}
+        {{ form_errors(form.Email) }}
+        <i class="zmdi zmdi-email"></i>
+    </div>
+
+    <div class="form-wrapper">
+        {{ form_widget(form.Entry_Date, {'attr': {'placeholder': 'Entry Date', 'class': 'form-control'}}) }}
+        {{ form_errors(form.Entry_Date) }}
+        <i class="zmdi zmdi-calendar"></i>
+    </div>
+
+  <div class="form-wrapper">
+    {{ form_widget(form.password.first, {'attr': {'placeholder': 'Password', 'class': 'form-control'}}) }}
+    {{ form_errors(form.password.first) }}
+    <i class="zmdi zmdi-lock"></i>
+</div>
+
+<div class="form-wrapper">
+    {{ form_widget(form.password.second, {'attr': {'placeholder': 'Confirm Password', 'class': 'form-control'}}) }}
+    {{ form_errors(form.password.second) }}
+    <i class="zmdi zmdi-lock"></i>
+</div>
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
+
+    {{ form_end(form) }}
+  </form>
+
+            </div>
+        </div>
+    </div>
+
+    {% block css %}
+        {{ parent() }}
+        <style>
+            .wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-image: url('{{ asset('img/bg-registration-form-1.jpg') }}');
+                background-size: cover;
+                background-position: center;
+            }
+
+            .inner {
+                background: rgba(255, 255, 255, 0.9);
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .container {
+                display: flex;
+                align-items: center;
+                gap: 0px;
+            }
+
+            .img-holder img {
+                max-width: 95%;
+                height: auto;
+                border-radius: 10px;
+            }
+
+            form {
+                max-width: 600px;
+                width: 100%;
+            }
+
+            .form-group {
+                display: flex;
+                gap: 10px;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            button {
+                background-color: #007bff;
+                color: white;
+                padding: 10px;
+                width: 100%;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    {% endblock %}
+
+    {% block js %}
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const password = document.querySelector("input[name='Password']");
+    const confirmPassword = document.querySelector("input[name='confirm_password']");
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", function (event) {
+        if (password.value !== confirmPassword.value) {
+            event.preventDefault(); // Empêche la soumission
+            alert("Les mots de passe ne correspondent pas !");
+        }
+    });
+});
+</script>
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}

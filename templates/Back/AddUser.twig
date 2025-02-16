@@ -1,0 +1,62 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Ajouter un Utilisateur - SkyLearn Admin{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper d-flex justify-content-center">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Ajouter un Utilisateur</h4>
+                    <form method="post" action="{{ path('admin_user_store') }}">
+                        <div class="form-group">
+                            <label for="first_name">Prénom</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Nom</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Nom d'utilisateur</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_inscription">Date d'inscription</label>
+                            <input type="date" class="form-control" id="date_inscription" name="date_inscription" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Rôle</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="role_agent" name="roles[]" value="Agent">
+                                <label class="form-check-label" for="role_agent">Agent</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="role_student" name="roles[]" value="Student">
+                                <label class="form-check-label" for="role_student">Student</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="role_tutor" name="roles[]" value="Tutor">
+                                <label class="form-check-label" for="role_tutor">Tutor</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirmer le mot de passe</label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+                        <a href="{{ path('admin_users') }}" class="btn btn-secondary btn-block">Annuler</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

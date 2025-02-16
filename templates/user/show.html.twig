@@ -1,0 +1,108 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Détails de l'Utilisateur - SkyLearn Admin{% endblock %}
+
+{% block stylesheets %}
+     <style>
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            padding: 2rem;
+        }
+        
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            padding: 2rem;
+            background: #fff;
+            max-width: 550px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+
+        .info-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1rem;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list li span {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .btn-group {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="card">
+            <h4 class="card-title">Détails de l'Utilisateur</h4>
+            <ul class="info-list">
+                <li><span>ID :</span> {{ user.id }}</li>
+                <li><span>Prénom :</span> {{ user.FirstName }}</li>
+                <li><span>Nom :</span> {{ user.LastName }}</li>
+                <li><span>Email :</span> {{ user.Email }}</li>
+                <li><span>Date d'Entrée :</span> {{ user.EntryDate ? user.EntryDate|date('Y-m-d') : 'N/A' }}</li>
+                <li><span>Rôle :</span> {{ user.Role }}</li>
+            </ul>
+            <div class="btn-group">
+                <a href="{{ path('app_user_index') }}" class="btn btn-secondary">Retour à la liste</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

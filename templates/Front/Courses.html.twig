@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Courses - SkyLearn{% endblock %}
+
+{% block nav %}
+<nav id="navmenu" class="navmenu">
+    <ul>
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li><a href="{{ path('about') }}">About</a></li>
+        <li><a href="{{ path('courses') }}" class="active">Courses</a></li>
+        <li><a href="{{ path('tutors') }}">Tutors</a></li>
+        <li><a href="{{ path('events') }}">Events</a></li>
+        <li><a href="{{ path('internships') }}">Internship</a></li>
+        <li><a href="{{ path('contact') }}">Contact</a></li>
+    </ul>
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
+{% endblock %}
+
+{% block body %}
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+    <div class="heading">
+        <div class="container">
+            <div class="row d-flex justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1>Courses</h1>
+                    <p class="mb-0">At SkyLearn, we offer a diverse range of professional courses designed to help you master new skills and accelerate your career.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="breadcrumbs">
+        <div class="container">
+            <ol>
+                <li><a href="{{ path('home') }}">Home</a></li>
+                <li class="current">Courses</li>
+            </ol>
+        </div>
+    </nav>
+</div><!-- End Page Title -->
+
+<!-- Courses Section -->
+<section id="courses" class="courses section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Courses</h2>
+        <p>Popular Courses</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="course-item">
+                    <img src="{{ asset('img/course-1.jpg') }}" class="img-fluid" alt="Website Design">
+                    <div class="course-content">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <p class="category">Web Development</p>
+                            <p class="price">$169</p>
+                        </div>
+                        <h3><a href="{{ path('course_details', { 'slug': 'website-design' }) }}">Website Design</a></h3>
+                        <p class="description">This Website Design course is designed to teach students how to create visually appealing, user-friendly, and fully functional websites.</p>
+                        <div class="trainer d-flex justify-content-between align-items-center">
+                            <div class="trainer-profile d-flex align-items-center">
+                                <img src="{{ asset('img/yosri.jpg') }}" class="img-fluid" alt="Yosri Awadi">
+                                <a href="#" class="trainer-link">Yosri Awadi</a>
+                            </div>
+                            <div class="trainer-rank d-flex align-items-center">
+                                <i class="bi bi-person user-icon"></i>&nbsp;50
+                                &nbsp;&nbsp;
+                                <i class="bi bi-heart heart-icon"></i>&nbsp;65
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Course Item-->
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+                <div class="course-item">
+                    <img src="{{ asset('img/course-2.jpg') }}" class="img-fluid" alt="SEO">
+                    <div class="course-content">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <p class="category">Marketing</p>
+                            <p class="price">$250</p>
+                        </div>
+                        <h3><a href="{{ path('course_details', { 'slug': 'seo' }) }}">Search Engine Optimization</a></h3>
+                        <p class="description">This Marketing course is designed to equip students with the essential skills needed to create effective marketing strategies, build strong brands, and drive business growth.</p>
+                        <div class="trainer d-flex justify-content-between align-items-center">
+                            <div class="trainer-profile d-flex align-items-center">
+                                <img src="{{ asset('img/ranime.jpg') }}" class="img-fluid" alt="Ranim">
+                                <a href="#" class="trainer-link">Ranim</a>
+                            </div>
+                            <div class="trainer-rank d-flex align-items-center">
+                                <i class="bi bi-person user-icon"></i>&nbsp;35
+                                &nbsp;&nbsp;
+                                <i class="bi bi-heart heart-icon"></i>&nbsp;42
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Course Item-->
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+                <div class="course-item">
+                    <img src="{{ asset('img/course-3.jpg') }}" class="img-fluid" alt="Copywriting">
+                    <div class="course-content">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <p class="category">Content</p>
+                            <p class="price">$180</p>
+                        </div>
+                        <h3><a href="{{ path('course_details', { 'slug': 'copywriting' }) }}">Copywriting</a></h3>
+                        <p class="description">This Copywriting course is designed to help students craft compelling, persuasive, and high-converting content for various marketing platforms.</p>
+                        <div class="trainer d-flex justify-content-between align-items-center">
+                            <div class="trainer-profile d-flex align-items-center">
+                                <img src="{{ asset('img/jesser.jpg') }}" class="img-fluid" alt="Jesser Ghoul">
+                                <a href="#" class="trainer-link">Jesser Ghoul</a>
+                            </div>
+                            <div class="trainer-rank d-flex align-items-center">
+                                <i class="bi bi-person user-icon"></i>&nbsp;20
+                                &nbsp;&nbsp;
+                                <i class="bi bi-heart heart-icon"></i>&nbsp;85
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Course Item-->
+        </div>
+    </div>
+</section><!-- /Courses Section -->
+{% endblock %}

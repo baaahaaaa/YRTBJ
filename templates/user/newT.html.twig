@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription Tuteur{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="form-container">
+            <h2>Inscription Tuteur</h2>
+
+            {{ form_start(form, {'attr': {'class': 'tutor-form'}}) }}
+                
+                <div class="form-wrapper">
+        {{ form_widget(form.FirstName, {'attr': {'placeholder': 'First Name', 'class': 'form-control'}}) }}
+        {{ form_errors(form.FirstName) }}
+    </div>
+    <div class="form-wrapper">
+        
+        {{ form_widget(form.LastName, {'attr': {'placeholder': 'Last Name', 'class': 'form-control'}}) }}
+        {{ form_errors(form.LastName) }}
+
+    </div>
+
+    <div class="form-wrapper">
+        {{ form_widget(form.Email, {'attr': {'placeholder': 'Email Address', 'class': 'form-control'}}) }}
+        {{ form_errors(form.Email) }}
+        <i class="zmdi zmdi-email"></i>
+    </div>
+
+    <div class="form-wrapper">
+        {{ form_widget(form.Entry_Date, {'attr': {'placeholder': 'Entry Date', 'class': 'form-control'}}) }}
+        {{ form_errors(form.Entry_Date) }}
+        <i class="zmdi zmdi-calendar"></i>
+    </div>
+  <div class="form-wrapper">
+    {{ form_widget(form.password.first, {'attr': {'placeholder': 'Password', 'class': 'form-control'}}) }}
+    {{ form_errors(form.password.first) }}
+    <i class="zmdi zmdi-lock"></i>
+</div>
+
+<div class="form-wrapper">
+    {{ form_widget(form.password.second, {'attr': {'placeholder': 'Confirm Password', 'class': 'form-control'}}) }}
+    {{ form_errors(form.password.second) }}
+    <i class="zmdi zmdi-lock"></i>
+</div>
+    <div class="form-wrapper">
+        {{ form_widget(form.Domain, {'attr': {'placeholder': 'Domain', 'class': 'form-control'}}) }}
+        {{ form_errors(form.Domain) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
+
+
+            {{ form_end(form) }}
+        </div>
+
+        <div class="image-container">
+            <img src="{{ asset('img/male-tutor-teaching-courses-from-home.jpg') }}" alt="Tuteur illustration">
+        </div>
+    </div>
+
+<style>
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.form-container {
+    width: 50%;
+    padding: 20px;
+}
+
+.image-container {
+    width: 50%;
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+</style>
+
+{% endblock %}

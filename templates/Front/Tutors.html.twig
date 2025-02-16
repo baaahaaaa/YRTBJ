@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tutors - SkyLearn{% endblock %}
+{% block nav %}
+                    <nav id="navmenu" class="navmenu">
+                        <ul>
+                            <li><a href="{{ path('home') }}">Home</a></li>
+                            <li><a href="{{ path('about') }}">About</a></li>
+                            <li><a href="{{ path('courses') }}">Courses</a></li>
+                            <li><a href="{{ path('events') }}">Events</a></li>
+                            <li><a href="{{ path('internships') }}">Internship</a></li>
+                            <li><a href="{{ path('contact') }}">Contact</a></li>
+                            <li><a href="{{ path('tutors') }}"class="active">Tutors</a></li>
+
+                        </ul>
+                    </nav>
+{% endblock %}
+{% block body %}
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Tutors</h1>
+                        <p class="mb-0">High-quality tutors in different fields.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="{{ path('home') }}">Home</a></li>
+                    <li class="current">Tutors</li>
+                </ol>
+            </div>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Tutors Section -->
+    <section id="trainers-index" class="section trainers-index">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member">
+                        <img src="{{ asset('img/ranime.jpg') }}" class="img-fluid" alt="Ranim Chikhruhou">
+                        <div class="member-content">
+                            <h4>Ranim Chikhruhou</h4>
+                            <span>Web Development</span>
+                            <p>
+                                A highly skilled and patient web development tutor with a passion for helping students grasp complex coding concepts.
+                            </p>
+                            <div class="social">
+                                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                                <a href="#"><i class="bi bi-facebook"></i></a>
+                                <a href="#"><i class="bi bi-instagram"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Tutor -->
+
+                <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member">
+                        <img src="{{ asset('img/yosri.jpg') }}" class="img-fluid" alt="Yosri Awadi">
+                        <div class="member-content">
+                            <h4>Yosri Awadi</h4>
+                            <span>Marketing</span>
+                            <p>
+                                An expert in the field of marketing who helps students and professionals develop their skills in branding.
+                            </p>
+                            <div class="social">
+                                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                                <a href="#"><i class="bi bi-facebook"></i></a>
+                                <a href="#"><i class="bi bi-instagram"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Tutor -->
+
+                <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member">
+                        <img src="{{ asset('img/jesser.jpg') }}" class="img-fluid" alt="Jesser El Ghoul">
+                        <div class="member-content">
+                            <h4>Jesser El Ghoul</h4>
+                            <span>Content</span>
+                            <p>
+                                A skilled professional who helps individuals and businesses master the art of content creation.
+                            </p>
+                            <div class="social">
+                                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                                <a href="#"><i class="bi bi-facebook"></i></a>
+                                <a href="#"><i class="bi bi-instagram"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Tutor -->
+            </div>
+        </div>
+    </section><!-- /Tutors Section -->
+{% endblock %}

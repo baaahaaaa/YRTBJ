@@ -1,0 +1,104 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Courses - SkyLearn Admin{% endblock %}
+
+{% block nav %}
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
+        <a class="sidebar-brand brand-logo" href="{{ path('admin_dashboard') }}">
+            <img src="{{ asset('images2/Sky.png') }}" alt="logo" style="width: 150px; height: auto;" />
+        </a>
+        <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="{{ path('admin_dashboard') }}">
+            <img src="{{ asset('images2/Sky.png') }}" alt="logo" style="width: 50px; height: auto;" />
+        </a>
+    </div>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_dashboard') }}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_courses') }}">
+                <i class="mdi mdi-table-large menu-icon"></i>
+                <span class="menu-title">Courses</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+    <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
+        <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
+            <i class="mdi mdi-menu"></i>
+        </button>
+    </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Courses</h3>
+        </div>
+        <div class="row"> 
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{ path('admin_add_course') }}" class="btn btn-primary mb-3" style="float: right;">Add Course</a>
+                        <h4 class="card-title">Courses List</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Domain</th>
+                                        <th>Type</th>
+                                        <th>Price (TND)</th>
+                                        <th>Creation Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Fundamentals of Advanced Programming</td>
+                                        <td class="truncate-text">Learn the fundamentals of advanced programming...</td>
+                                        <td><label class="badge badge-info">Programming</label></td>
+                                        <td><label class="badge badge-success">Paid</label></td>
+                                        <td>900 TND</td>
+                                        <td>2024-01-15</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <button class="btn btn-outline-primary btn-sm"><i class="mdi mdi-pencil"></i></button>
+                                                <button class="btn btn-outline-danger btn-sm"><i class="mdi mdi-delete"></i></button>
+                                                <a href="{{ path('admin_add_resource') }}" class="btn btn-primary btn-sm">
+                                                    <i class="mdi mdi-plus"></i> Resource
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block footer %}
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © SkyLearn 2024</span>
+        </div>
+    </footer>
+    {% endblock %}
+</div>
+{% endblock %}

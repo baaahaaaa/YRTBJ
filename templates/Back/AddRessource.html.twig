@@ -1,0 +1,152 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Add a Resource - SkyLearn Admin{% endblock %}
+
+{% block css %}
+    <style>
+        .form-container {
+            background-color: #fff;
+            padding: 20px 30px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+        .form-container h2 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .form-group #file-upload {
+            display: none;
+        }
+        .upload-button {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="main-panel">
+    <div class="content-wrapper d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="form-container">
+            <h2>Add a Resource</h2>
+            <form action="{{ path('admin_add_resource_submit') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="id">Resource ID</label>
+                    <input type="number" id="id" name="id" required>
+                </div>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="format">Format</label>
+                    <select id="format" name="format" required>
+                        <option value="">Select</option>
+                        <option value="Text">Text</option>
+                        <option value="PDF">PDF</option>
+                        <option value="Video">Video</option>
+                        <option value="Image">Image</option>
+                        <option value="PPT">PPT</option>
+                        <option value="Word">Word</option>
+                    </select>
+                </div>
+                
+                <!-- File upload field -->
+                <div class="form-group" id="file-group" style="display: none;">
+                    <input type="file" id="file-upload" name="file" accept=".pdf,.jpg,.jpeg,.png,.mp4,.ppt,.docx">
+                    <button type="button" id="upload-btn" class="upload-button">Upload Resource</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="creation_date">Creation Date</label>
+                    <input type="date" id="creation_date" name="creation_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="course_id">Associated Course ID</label>
+                    <input type="number" id="course_id" name="course_id" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add Resource">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © SkyLearn 2024</span>
+    </div>
+</footer>
+{% endblock %}
+
+{% block js %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const formatSelect = document.getElementById('format');
+        const fileGroup = document.getElementById('file-group');
+        const uploadBtn = document.getElementById('upload-btn');
+        const fileUpload = document.getElementById('file-upload');
+
+        formatSelect.addEventListener('change', function () {
+            const selectedFormat = this.value;
+            if (['PDF', 'Video', 'Image', 'PPT', 'Word'].includes(selectedFormat)) {
+                fileGroup.style.display = 'block';
+                uploadBtn.style.display = 'inline-block';
+            } else {
+                fileGroup.style.display = 'none';
+                uploadBtn.style.display = 'none';
+            }
+        });
+
+        uploadBtn.addEventListener('click', function () {
+            fileUpload.click();
+        });
+    });
+</script>
+{% endblock %}

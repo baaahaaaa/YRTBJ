@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign Up - Student | SkyLearn{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="inner">
+            <div class="container">
+                <div class="img-holder">
+                    <img src="{{ asset('img/student.jpg') }}" alt="Student">
+                </div>
+
+                <form action="{{ path('app_user_new') }}" method="POST">
+                    <h3>Student Registration Form</h3>
+                    
+                    <div class="form-group">
+                        <input type="text" name="first_name" placeholder="First Name" class="form-control" required>
+                        <input type="text" name="last_name" placeholder="Last Name" class="form-control" required>
+                    </div>
+
+                    <div class="form-wrapper">
+                        <input type="text" name="username" placeholder="Username" class="form-control" required>
+                        <i class="zmdi zmdi-account"></i>
+                    </div>
+
+                    <div class="form-wrapper">
+                        <input type="email" name="email" placeholder="Email Address" class="form-control" required>
+                        <i class="zmdi zmdi-email"></i>
+                    </div>
+
+                    <div class="form-wrapper">
+                        <input type="text" name="phone" placeholder="Phone Number" class="form-control" required>
+                        <i class="zmdi zmdi-phone"></i>
+                    </div>
+
+                    <div class="form-wrapper">
+                        <input type="password" name="password" placeholder="Password" class="form-control" required>
+                        <i class="zmdi zmdi-lock"></i>
+                    </div>
+
+                    <div class="form-wrapper">
+                        <input type="password" name="confirm_password" placeholder="Confirm Password" class="form-control" required>
+                        <i class="zmdi zmdi-lock"></i>
+                    </div>
+
+                    <button type="submit">Register
+                        <i class="zmdi zmdi-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-img: url('{{ asset('img/bg-registration-form-1.jpg') }}');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .inner {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .img-holder img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        form {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+{% endblock %}
