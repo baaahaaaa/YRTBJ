@@ -2,39 +2,39 @@
 
 namespace App\Repository;
 
-use App\Entity\ComplaintResponse;
+use App\Entity\Reponse;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<ComplaintResponse>
+ * @extends ServiceEntityRepository<Reponse>
  */
-class ComplaintResponseRepository extends ServiceEntityRepository
+class ReponseRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ComplaintResponse::class);
+        parent::__construct($registry, Reponse::class);
     }
 
     //    /**
-    //     * @return ComplaintResponse[] Returns an array of ComplaintResponse objects
+    //     * @return Reponse[] Returns an array of Reponse objects
     //     */
     //    public function findByExampleField($value): array
     //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
     //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
+    //            ->orderBy('r.id', 'ASC')
     //            ->setMaxResults(10)
     //            ->getQuery()
     //            ->getResult()
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?ComplaintResponse
+    //    public function findOneBySomeField($value): ?Reponse
     //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
     //            ->setParameter('val', $value)
     //            ->getQuery()
     //            ->getOneOrNullResult()

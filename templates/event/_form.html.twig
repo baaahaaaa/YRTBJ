@@ -1,4 +1,74 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.Title, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.Title, {'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Enter event title'
+                }}) }}
+                {{ form_errors(form.Title, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.Type, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.Type, {'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Enter event type'
+                }}) }}
+                {{ form_errors(form.Type, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                {{ form_label(form.Description, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.Description, {'attr': {
+                    'class': 'form-control',
+                    'rows': 4,
+                    'placeholder': 'Enter event description'
+                }}) }}
+                {{ form_errors(form.Description, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.Location, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.Location, {'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Enter event location'
+                }}) }}
+                {{ form_errors(form.Location, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                {{ form_row(form.Date_event, {
+                    'label_attr': {'class': 'form-label'},
+                    'attr': {'class': 'form-control'}
+                }) }}
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                {{ form_label(form.Price, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.Price, {'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Enter price'
+                }}) }}
+                {{ form_errors(form.Price, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <button class="btn btn-success">
+            <i class="bi bi-check-circle"></i> {{ button_label|default('Save') }}
+        </button>
+    </div>
 {{ form_end(form) }}

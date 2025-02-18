@@ -28,6 +28,10 @@ class Reservation
     #[ORM\Column(length: 255)]
     private ?string $SpecialRequest = null;
 
+    #[ORM\ManyToOne(targetEntity: Event::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Event $event = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -41,7 +45,6 @@ class Reservation
     public function setNbPlaces(int $NbPlaces): static
     {
         $this->NbPlaces = $NbPlaces;
-
         return $this;
     }
 
@@ -53,7 +56,6 @@ class Reservation
     public function setTotalPrice(float $Total_price): static
     {
         $this->Total_price = $Total_price;
-
         return $this;
     }
 
@@ -65,7 +67,6 @@ class Reservation
     public function setPhoneNumber(int $PhoneNumber): static
     {
         $this->PhoneNumber = $PhoneNumber;
-
         return $this;
     }
 
@@ -77,7 +78,6 @@ class Reservation
     public function setName(string $Name): static
     {
         $this->Name = $Name;
-
         return $this;
     }
 
@@ -89,7 +89,17 @@ class Reservation
     public function setSpecialRequest(string $SpecialRequest): static
     {
         $this->SpecialRequest = $SpecialRequest;
+        return $this;
+    }
 
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): static
+    {
+        $this->event = $event;
         return $this;
     }
 }

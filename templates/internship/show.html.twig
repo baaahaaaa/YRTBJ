@@ -1,50 +1,84 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}Internship{% endblock %}
+{% block title %}Internship Details - SkyLearn Admin{% endblock %}
+
+
 
 {% block body %}
-    <h1>Internship</h1>
+    <div class="content-wrapper">
+        <!-- Page Header -->
+        <div class="page-header d-flex justify-content-between">
+            <h3 class="page-title">Internship Details</h3>
+            <a href="{{ path('app_internship_index') }}" class="btn btn-secondary">Back to Internships</a>
+        </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ internship.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ internship.Title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ internship.Description }}</td>
-            </tr>
-            <tr>
-                <th>CompanyName</th>
-                <td>{{ internship.CompanyName }}</td>
-            </tr>
-            <tr>
-                <th>Location</th>
-                <td>{{ internship.Location }}</td>
-            </tr>
-            <tr>
-                <th>Duration</th>
-                <td>{{ internship.Duration }}</td>
-            </tr>
-            <tr>
-                <th>Requirements</th>
-                <td>{{ internship.Requirements }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ internship.Email }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <!-- Internship Details Section -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <h3 class="mb-3">{{ internship.Title }}</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>Company:</strong> {{ internship.CompanyName }}</li>
+                            <li><strong>Location:</strong> {{ internship.Location }}</li>
+                            <li><strong>Duration:</strong> {{ internship.Duration }}</li>
+                            <li><strong>Email:</strong> <a href="mailto:{{ internship.Email }}">{{ internship.Email }}</a></li>
+                        </ul>
+                        <hr>
+                        <p><strong>Description:</strong></p>
+                        <p>{{ internship.Description }}</p>
+                        <p><strong>Requirements:</strong></p>
+                        <p>{{ internship.Requirements }}</p>
 
-    <a href="{{ path('app_internship_index') }}">back to list</a>
+                        <div class="text-center mt-4">
+                            <a href="{{ path('app_internship_edit', { 'id': internship.id }) }}" class="btn btn-warning px-4">Modify</a>
+                            <form action="{{ path('app_internship_delete', { 'id': internship.id }) }}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger px-4">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('app_internship_edit', {'id': internship.id}) }}">edit</a>
-
-    {{ include('internship/_delete_form.html.twig') }}
+        <!-- Internship List Section (Admin Dashboard) -->
+        <div class="row mt-5">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Internship List</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Company Name</th>
+                                        <th>Title</th>
+                                        <th>Location</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for internship in [internship] %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ internship.CompanyName }}</td>
+                                        <td>{{ internship.Title }}</td>
+                                        <td>{{ internship.Location }}</td>
+                                        <td>
+                                            <a href="{{ path('app_internship_edit', { 'id': internship.id }) }}" class="btn btn-warning btn-sm">Modify</a>
+                                            <form action="{{ path('app_internship_delete', { 'id': internship.id }) }}" method="post" style="display:inline;">
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

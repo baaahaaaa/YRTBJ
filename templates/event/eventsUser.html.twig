@@ -1,0 +1,213 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Events - SkyLearn{% endblock %}
+
+                {% block nav %}
+                    <nav id="navmenu" class="navmenu">
+                        <ul>
+                            <li><a href="{{ path('home') }}" >Home</a></li>
+                            <li><a>Courses</a></li>
+                            <li><a href="{{ path('events') }}"class="active" >Event</a></li>
+                            <li><a href="{{ path('app_internship_show_all') }}" >Internships</a></li>
+                            <li><a href="{{ path('app_reclamation_index') }}" >Contact</a></li>
+                             <li class="dropdown">
+                                <a>Inscription</a>
+                             <ul class="dropdown-menu">
+                             <li><a href="{{ path('signup_tutor') }}">Tutor</a></li>
+                             <li><a href="{{ path('signup_student') }}">Student</a></li>
+                             <li><a href="{{ path('signup_agent') }}">Agent</a></li>
+                                       </ul>
+                                       <script>
+                                       .nav-menu {
+    list-style: none;
+    display: flex;
+    background: #2c3e50;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.nav-menu li {
+    position: relative;
+    margin: 0 15px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    display: block;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-menu a:hover {
+    background: #1abc9c;
+    border-radius: 5px;
+}
+
+/* Style du menu déroulant */
+.dropdown-menu {
+    list-style: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: white;
+    padding: 10px;
+    display: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    min-width: 150px;
+}
+
+.dropdown-menu li {
+    margin: 5px 0;
+}
+
+.dropdown-menu a {
+    color: #2c3e50;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+.dropdown-menu a:hover {
+    background: #1abc9c;
+    color: white;
+}
+
+/* Afficher le menu déroulant au survol */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+                                       </script>
+                             </li>
+    
+                            
+                        </ul>
+                    </nav>
+                {% endblock %}
+        
+{% block body %}
+<main class="main">
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Events</h1>
+                        <p class="mb-0">Our events are crafted to enhance your learning experience by giving you access to industry experts, networking opportunities, workshops, and live Q&A sessions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="{{ path('app_admin_index') }}">Home</a></li>
+                    <li class="current">Events</li>
+                </ol>
+            </div>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Events Section -->
+    <section id="events" class="events section">
+        <div class="container" data-aos="fade-up">
+            <div class="row g-4">
+                {% for event in events %}
+                    <div class="col-md-6 d-flex align-items-stretch">
+                        <div class="card">
+                            <div class="card-img">
+                                <img src="{{ asset('img/event.jpg') }}" alt="{{ event.Title }}">
+                            </div>
+                            <div class="card-body">
+                                {# <h5 class="card-title"><a href="{{ path('app_event_show', {'id': event.id}) }}">{{ event.Title }}</a></h5> #}
+                                <p class="fst-italic text-center">
+                                    <i class="bi bi-calendar-event"></i>
+                                    {{ event.DateEvent ? event.DateEvent|date('l, F jS \\a\\t g:i a') : 'Date to be announced' }}
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge bg-primary">{{ event.Type }}</span>
+                                    <span class="text-primary">
+                                        <i class="bi bi-geo-alt"></i> {{ event.Location }}
+                                    </span>
+                                </div>
+                                <p class="card-text">{{ event.Description }}</p>
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    <span class="h5 mb-0 text-primary">{{ event.Price }} DT</span>
+                                    <a href="{{ path('app_reservation_new', {'event_id': event.id}) }}" class="btn btn-primary">
+                                        <i class="bi bi-calendar-check"></i> Make Reservation
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-12 text-center py-5">
+                        <i class="bi bi-calendar-x display-1 text-muted mb-3"></i>
+                        <p class="lead">No events are currently scheduled. Please check back later!</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section><!-- /Events Section -->
+</main>
+
+<style>
+    .events .card {
+        border: 0;
+        padding: 0 30px;
+        margin-bottom: 60px;
+        position: relative;
+        background: transparent;
+    }
+
+    .events .card-img {
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+
+    .events .card-img img {
+        width: 100%;
+        transition: 0.3s ease-in-out;
+    }
+
+    .events .card:hover img {
+        transform: scale(1.1);
+    }
+
+    .events .card h3 {
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 5px;
+        padding: 0;
+    }
+
+    .events .card-title {
+        margin: 0 0 10px 0;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .events .card-title a {
+        color: #37423b;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+
+    .events .card-title a:hover {
+        color: #5fcf80;
+    }
+
+    .events .card-text {
+        color: #5e5e5e;
+    }
+
+    .events .badge {
+        padding: 0.5em 1em;
+    }
+</style>
+{% endblock %}

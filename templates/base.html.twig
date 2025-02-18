@@ -29,18 +29,18 @@
     <header id="header" class="header d-flex align-items-center sticky-top">
         {% block header %}
             <div class="container-fluid container-xl position-relative d-flex align-items-center">
-                <a href="{{ path('app_home') }}" class="logo d-flex align-items-center me-auto">
+                <a href="{{ path('home') }}" class="logo d-flex align-items-center me-auto">
                     <img src="{{ asset('img/skylearnlogo.png') }}" alt="SkyLearn">
                     <h1 class="sitename">SkyLearn</h1>
                 </a>
                 {% block nav %}
                     <nav id="navmenu" class="navmenu">
                         <ul>
-                            <li><a href="{{ path('app_home') }}" class="active">Home</a></li>
-                            <li><a>Courses</a></li>
-                            <li><a>Events</a></li>
-                            <li><a>Internship</a></li>
-                            <li><a>Contact</a></li>
+                            <li><a href="{{ path('home') }}" class="active">Home</a></li>
+                            <li><a href="{{ path('events') }}" >Event</a></li>
+                            <li><a href="{{ path('app_internship_show_all') }}" >Internships</a></li>
+                            <li><a href="{{ path('app_reclamation_index') }}" >Contact</a></li>
+                            <li><a href="{{ path('app_course_index_front') }}">Courses</a></li>
                              <li class="dropdown">
                                 <a>Inscription</a>
                              <ul class="dropdown-menu">
@@ -130,7 +130,8 @@
             <div class="container footer-top">
                 <div class="row">
                     <div class="col-lg-4 footer-about">
-                        <a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
+                        <a href="{{ path('home') }}" class="logo d-flex align-items-center">
+                        
                             <span class="sitename">SkyLearn</span>
                         </a>
                         <p>Chotrana Ariana Soghra, Ariana</p>
@@ -140,7 +141,7 @@
                     <div class="col-lg-4 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><a href="{{ path('app_home') }}">Home</a></li>
+                            <li><a href="{{ path('home') }}">Home</a></li>
                             <li><a>About us</a></li>
                             <li><a>Courses</a></li>
                             <li><a>Events</a></li>
@@ -161,6 +162,10 @@
     </footer>
 
     {% block js %}
+    <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Your custom JS -->
+        <script src="{{ asset('js/main.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
         <script src="{{ asset('vendor/aos/aos.js') }}"></script>

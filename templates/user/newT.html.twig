@@ -1,50 +1,52 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Inscription Tuteur{% endblock %}
+{% block nav %}{% endblock %}
 
 {% block body %}
     <div class="container">
         <div class="form-container">
             <h2>Inscription Tuteur</h2>
 
-            {{ form_start(form, {'attr': {'class': 'tutor-form'}}) }}
+            {{ form_start(form, {'attr': {'class': 'tutor-form' , 'novalidate': 'novalidate' }}) }}
                 
                 <div class="form-wrapper">
         {{ form_widget(form.FirstName, {'attr': {'placeholder': 'First Name', 'class': 'form-control'}}) }}
-        {{ form_errors(form.FirstName) }}
+        {{ form_errors(form.FirstName, {'attr': {'class': 'invalid-feedback'}}) }}
+
     </div>
     <div class="form-wrapper">
         
         {{ form_widget(form.LastName, {'attr': {'placeholder': 'Last Name', 'class': 'form-control'}}) }}
-        {{ form_errors(form.LastName) }}
+            {{ form_errors(form.LastName, {'attr': {'class': 'invalid-feedback'}}) }}
 
     </div>
 
     <div class="form-wrapper">
         {{ form_widget(form.Email, {'attr': {'placeholder': 'Email Address', 'class': 'form-control'}}) }}
-        {{ form_errors(form.Email) }}
+            {{ form_errors(form.Email, {'attr': {'class': 'invalid-feedback'}}) }}
         <i class="zmdi zmdi-email"></i>
     </div>
 
     <div class="form-wrapper">
         {{ form_widget(form.Entry_Date, {'attr': {'placeholder': 'Entry Date', 'class': 'form-control'}}) }}
-        {{ form_errors(form.Entry_Date) }}
+            {{ form_errors(form.Entry_Date, {'attr': {'class': 'invalid-feedback'}}) }}
         <i class="zmdi zmdi-calendar"></i>
     </div>
   <div class="form-wrapper">
     {{ form_widget(form.password.first, {'attr': {'placeholder': 'Password', 'class': 'form-control'}}) }}
-    {{ form_errors(form.password.first) }}
+            {{ form_errors(form.password.first, {'attr': {'class': 'invalid-feedback'}}) }}
     <i class="zmdi zmdi-lock"></i>
 </div>
 
 <div class="form-wrapper">
     {{ form_widget(form.password.second, {'attr': {'placeholder': 'Confirm Password', 'class': 'form-control'}}) }}
-    {{ form_errors(form.password.second) }}
+            {{ form_errors(form.password.second, {'attr': {'class': 'invalid-feedback'}}) }}
     <i class="zmdi zmdi-lock"></i>
 </div>
     <div class="form-wrapper">
         {{ form_widget(form.Domain, {'attr': {'placeholder': 'Domain', 'class': 'form-control'}}) }}
-        {{ form_errors(form.Domain) }}
+            {{ form_errors(form.Domain, {'attr': {'class': 'invalid-feedback'}}) }}
     </div>
 
     <button type="submit" class="btn btn-primary">S'inscrire</button>

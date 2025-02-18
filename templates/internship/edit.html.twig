@@ -1,13 +1,77 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}Edit Internship{% endblock %}
+{% block title %}Modify Internship - SkyLearn Admin{% endblock %}
 
 {% block body %}
-    <h1>Edit Internship</h1>
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Modify Internship</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body">
+                        {# Affichage des erreurs globales #}
+                        {% if errors is defined %}
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {% for error in errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
 
-    {{ include('internship/_form.html.twig', {'button_label': 'Update'}) }}
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            {{ form_widget(form.CompanyName, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.CompanyName, {'attr': {'class': 'invalid-feedback'}}) }}
 
-    <a href="{{ path('app_internship_index') }}">back to list</a>
+                        </div>
+                        <div class="form-group">
+                            <label>Internship Title</label>
+                            {{ form_widget(form.Title, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.Title, {'attr': {'class': 'invalid-feedback'}}) }}
 
-    {{ include('internship/_delete_form.html.twig') }}
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            {{ form_widget(form.Description, {'attr': {'class': 'form-control', 'rows': '4'}}) }}
+                            {{ form_errors(form.Description, {'attr': {'class': 'invalid-feedback'}}) }}
+
+                        </div>
+                        <div class="form-group">
+                            <label>Duration</label>
+                            {{ form_widget(form.Duration, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.Duration, {'attr': {'class': 'invalid-feedback'}}) }}
+
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            {{ form_widget(form.Location, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.Location, {'attr': {'class': 'invalid-feedback'}}) }}
+
+                        </div>
+                        <div class="form-group">
+                            <label>Requirements</label>
+                            {{ form_widget(form.Requirements, {'attr': {'class': 'form-control', 'rows': '4'}}) }}
+                            {{ form_errors(form.Requirements, {'attr': {'class': 'invalid-feedback'}}) }}
+
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            {{ form_widget(form.Email, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.Email, {'attr': {'class': 'invalid-feedback'}}) }}
+
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                        <a href="{{ path('app_internship_index') }}" class="btn btn-secondary">Cancel</a>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,42 +1,100 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reservation{% endblock %}
+{% block title %}Reservation Details{% endblock %}
 
 {% block body %}
-    <h1>Reservation</h1>
+<main class="main">
+    <div class="page-title" data-aos="fade">
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Reservation Details</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ reservation.id }}</td>
-            </tr>
-            <tr>
-                <th>NbPlaces</th>
-                <td>{{ reservation.NbPlaces }}</td>
-            </tr>
-            <tr>
-                <th>Total_price</th>
-                <td>{{ reservation.TotalPrice }}</td>
-            </tr>
-            <tr>
-                <th>PhoneNumber</th>
-                <td>{{ reservation.PhoneNumber }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ reservation.Name }}</td>
-            </tr>
-            <tr>
-                <th>SpecialRequest</th>
-                <td>{{ reservation.SpecialRequest }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <section class="section">
+        <div class="container" data-aos="fade-up">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h2 class="h4 mb-0">Reservation Information</h2>
+                    <div class="btn-group">
+                        <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}" class="btn btn-warning">
+                            <i class="bi bi-pencil"></i> Edit
+                        </a>
+                        <a href="{{ path('app_reservation_index') }}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Back to list
+                        </a>
+                    </div>
+                </div>
 
-    <a href="{{ path('app_reservation_index') }}">back to list</a>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="info-item bg-light p-4 rounded">
+                                <h5><i class="bi bi-calendar-event text-primary"></i> Event</h5>
+                                <p class="mb-0">{{ reservation.event.Title }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item bg-light p-4 rounded">
+                                <h5><i class="bi bi-person text-primary"></i> Name</h5>
+                                <p class="mb-0">{{ reservation.Name }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item bg-light p-4 rounded">
+                                <h5><i class="bi bi-people text-primary"></i> Number of Places</h5>
+                                <p class="mb-0">{{ reservation.NbPlaces }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item bg-light p-4 rounded">
+                                <h5><i class="bi bi-cash text-primary"></i> Total Price</h5>
+                                <p class="mb-0">{{ reservation.TotalPrice }} DT</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item bg-light p-4 rounded">
+                                <h5><i class="bi bi-telephone text-primary"></i> Phone Number</h5>
+                                <p class="mb-0">{{ reservation.PhoneNumber }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item bg-light p-4 rounded">
+                                <h5><i class="bi bi-chat-text text-primary"></i> Special Request</h5>
+                                <p class="mb-0">{{ reservation.SpecialRequest }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">edit</a>
+                <div class="card-footer bg-white">
+                    {{ include('reservation/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
-    {{ include('reservation/_delete_form.html.twig') }}
+<style>
+    .page-title {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+        color: white;
+        padding: 4rem 0 2rem;
+    }
+    .section {
+        padding: 5rem 0;
+    }
+    .info-item h5 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .info-item i {
+        margin-right: 0.5rem;
+    }
+</style>
 {% endblock %}

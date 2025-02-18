@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Internship - SkyLearn{% endblock %}
+
+
+{% block body %}
+<main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>{{ internship.title }}</h1>
+                        <p class="mb-0">{{ internship.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="{{ path('home') }}">Home</a></li>
+                    <li><a href="{{ path('app_internship_index') }}">Internship</a></li>
+                    <li class="current">Details</li>
+                </ol>
+            </div>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Internship Details Section -->
+    <section class="container-fluid">
+        <div class="row mt-5">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <img src="{{ asset('img/digital.jpg') }}" class="card-img-top" alt="Internship Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ internship.title }}</h5>
+                        <p><strong>Company:</strong> {{ internship.companyName }} | <strong>Duration:</strong> {{ internship.duration }} months</p>
+                        <p><strong>Location:</strong> {{ internship.location }}</p>
+                        <p><strong>Requirements:</strong> {{ internship.requirements }}</p>
+                        <p>{{ internship.description }}</p>
+
+                        <a href="{{ path('postuler', { 'id': internship.id }) }}" class="btn btn-success">Apply Now</a>
+                        <button class="btn btn-secondary d-none" onclick="cancelApplication(this)">Cancel Application</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

@@ -36,7 +36,7 @@ class TutorType extends AbstractType
         ->add('Entry_Date', DateType::class, [
             'label' => "Date d'entrée",
             'widget' => 'single_text',
-            'required' => true, // Rend la date obligatoire
+            'required' => false, // Rend la date obligatoire
             'html5' => true, // Active le sélecteur de date HTML5
         ])
         

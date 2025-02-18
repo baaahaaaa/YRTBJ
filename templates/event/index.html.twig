@@ -1,45 +1,63 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}Event index{% endblock %}
+{% block title %}Events List{% endblock %}
 
 {% block body %}
-    <h1>Event index</h1>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-primary">Events Management</h1>
+            <a href="{{ path('app_event_new') }}" class="btn btn-primary" novalidate>
+                <i class="bi bi-plus-circle"></i> Create New Event
+            </a>
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Type</th>
-                <th>Location</th>
-                <th>Date_event</th>
-                <th>Price</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for event in events %}
-            <tr>
-                <td>{{ event.id }}</td>
-                <td>{{ event.Title }}</td>
-                <td>{{ event.Description }}</td>
-                <td>{{ event.Type }}</td>
-                <td>{{ event.Location }}</td>
-                <td>{{ event.DateEvent ? event.DateEvent|date('Y-m-d') : '' }}</td>
-                <td>{{ event.Price }}</td>
-                <td>
-                    <a href="{{ path('app_event_show', {'id': event.id}) }}">show</a>
-                    <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_event_new') }}">Create new</a>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Location</th>
+                                <th>Date</th>
+                                <th>Price</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for event in events %}
+                            <tr>
+                                <td>{{ event.Title }}</td>
+                                <td>{{ event.Description|slice(0, 50) ~ '...' }}</td>
+                                <td><span class="badge bg-info">{{ event.Type }}</span></td>
+                                <td><i class="bi bi-geo-alt"></i> {{ event.Location }}</td>
+                                <td><i class="bi bi-calendar"></i> {{ event.DateEvent ? event.DateEvent|date('Y-m-d') : '' }}</td>
+                                <td><span class="badge bg-success">{{ event.Price }} DT</span></td>
+                                <td>
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <a href="{{ path('app_event_show', {'id': event.id}) }}" class="btn btn-info btn-sm" title="View">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href="{{ path('app_event_edit', {'id': event.id}) }}" class="btn btn-warning btn-sm" title="Edit">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="7" class="text-center py-4">
+                                    <i class="bi bi-calendar-x fs-1 d-block mb-2 text-muted"></i>
+                                    No events found
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

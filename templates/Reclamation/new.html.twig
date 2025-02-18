@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Complaint - SkyLearn{% endblock %}
+
+{% block nav %}
+<nav id="navmenu" class="navmenu">
+    <ul>
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li><a href="{{ path('app_reclamation_index') }}">Reclamations</a></li>  {# Ajout d'un lien vers la page des réclamations #}
+    </ul>
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
+{% endblock %}
+
+{% block body %}
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+    <div class="heading">
+        <div class="container">
+            <div class="row d-flex justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1>Create New Complaint</h1>
+                    <p class="mb-0">Please fill out the form below to submit your complaint. We take all feedback seriously and will address your concerns as quickly as possible.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="breadcrumbs">
+        <div class="container">
+            <ol>
+                <li><a href="{{ path('home') }}">Home</a></li>
+                <li class="current">New Complaint</li>
+            </ol>
+        </div>
+    </nav>
+</div>
+
+<!-- Complaint Form Section -->
+<section class="contact section">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+            <div class="col-lg-12">
+                <div class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                    {# Inclure le formulaire de réclamation #}
+                    {{ include('reclamation/_form.html.twig', { form: form }) }}
+
+                    <div class="text-center mt-4">
+                        <a href="{{ path('app_reclamation_index') }}" class="btn btn-secondary">Back to list</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -30,7 +30,7 @@
             background-color: #0056b3;
         }
     </style>
-    {{ form_start(form) }}
+            {{ form_start(form, {'attr': {'class': 'tutor-form' , 'novalidate': 'novalidate' }}) }}
         {{ form_widget(form) }}
         <button class="btn">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}

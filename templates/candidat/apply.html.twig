@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Apply for Internship{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2>Apply for Internship: {{ internship.title }}</h2>
+
+    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data', 'novalidate': 'novalidate'}}) }}
+        <div class="mb-3">
+            {{ form_label(form.FullName) }}
+            {{ form_widget(form.FullName, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.FullName, {'attr': {'class': 'invalid-feedback'}}) }}
+
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.Email) }}
+            {{ form_widget(form.Email, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.Email, {'attr': {'class': 'invalid-feedback'}}) }}
+
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.PhoneNumber) }}
+            {{ form_widget(form.PhoneNumber, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.PhoneNumber, {'attr': {'class': 'invalid-feedback'}}) }}
+
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.cv) }}
+            {{ form_widget(form.cv, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.cv, {'attr': {'class': 'invalid-feedback'}}) }}
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Application</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

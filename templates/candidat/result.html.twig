@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidat Result{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Result for {{ candidat.FullName }}</h2>
+        <p>Email: {{ candidat.Email }}</p>
+        <p>Phone Number: {{ candidat.PhoneNumber }}</p>
+        <p>Application Date: {{ candidat.DateCandidature|date('Y-m-d') }}</p>
+        
+        <h3>Result: 
+            {% if candidat.Result %}
+                <span class="badge badge-success">Accepted</span>
+            {% else %}
+                <span class="badge badge-danger">Rejected</span>
+            {% endif %}
+        </h3>
+            </div>
+{% endblock %}

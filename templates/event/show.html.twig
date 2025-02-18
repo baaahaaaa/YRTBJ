@@ -1,46 +1,71 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}Event{% endblock %}
+{% block title %}Event Details{% endblock %}
 
 {% block body %}
-    <h1>Event</h1>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <h2 class="h4 mb-0">Event Details</h2>
+                        <div class="btn-group">
+                            <a href="{{ path('app_event_edit', {'id': event.id}) }}" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil"></i> Edit
+                            </a>
+                            <a href="{{ path('app_event_index') }}" class="btn btn-light btn-sm">
+                                <i class="bi bi-arrow-left"></i> Back
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <h3 class="h2 text-primary mb-3">{{ event.Title }}</h3>
+                            <p class="lead">{{ event.Description }}</p>
+                        </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ event.Title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ event.Description }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ event.Type }}</td>
-            </tr>
-            <tr>
-                <th>Location</th>
-                <td>{{ event.Location }}</td>
-            </tr>
-            <tr>
-                <th>Date_event</th>
-                <td>{{ event.DateEvent ? event.DateEvent|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ event.Price }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_event_index') }}">back to list</a>
-
-    <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
-
-    {{ include('event/_delete_form.html.twig') }}
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5><i class="bi bi-tag"></i> Type</h5>
+                                        <p class="mb-0">{{ event.Type }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5><i class="bi bi-geo-alt"></i> Location</h5>
+                                        <p class="mb-0">{{ event.Location }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5><i class="bi bi-calendar"></i> Date</h5>
+                                        <p class="mb-0">{{ event.DateEvent ? event.DateEvent|date('Y-m-d') : '' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5><i class="bi bi-cash"></i> Price</h5>
+                                        <p class="mb-0">{{ event.Price }} DT</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">
+                        {{ include('event/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

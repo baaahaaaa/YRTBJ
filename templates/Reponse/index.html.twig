@@ -1,0 +1,101 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Responses & Reclamations{% endblock %}
+
+{% block body %}
+<div class="content-wrapper">
+    <div class="page-header d-flex justify-content-between">
+        <h3 class="page-title">Responses & Reclamations</h3>
+    </div>
+
+    <div class="row">
+        <!-- Tableau des Réclamations -->
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">List of Reclamations</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Subject</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for reclamation in reclamations %}
+                                    <tr>
+                                        <td>{{ reclamation.id }}</td>
+                                        <td>{{ reclamation.subject }}</td>
+                                        <td>{{ reclamation.statut }}</td>
+                                        <td>
+                                            <a href="{{ path('app_reponse_new', {'ReclamationId': reclamation.id}) }}" class="btn btn-primary btn-sm">Add Response</a>
+                                            <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}" class="btn btn-info btn-sm">Show</a>
+                                            <form method="post" action="{{ path('app_reclamation_delete', {'id': reclamation.id}) }}" onsubmit="return confirm('Are you sure you want to delete this reclamation?');" style="display:inline;">
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="4">No reclamations found</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau des Réponses -->
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">List of Responses</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Description</th>
+                                    <th>Created At</th>
+                                    <th>Reclamation Subject</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for reponse in reponses %}
+    <tr>
+        <td>{{ reponse.id }}</td>
+        <td>{{ reponse.description }}</td>
+        <td>{{ reponse.createdAt ? reponse.createdAt|date('Y-m-d') : '' }}</td>
+        <td>{{ reponse.reclamation.subject }}</td>
+        <td>
+            <a href="{{ path('app_reponse_show', {'id': reponse.id}) }}" class="btn btn-info btn-sm">Show</a>
+            <a href="{{ path('app_reponse_edit', {'id': reponse.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+            <form method="post" action="{{ path('app_reponse_delete', {'id': reponse.id}) }}" 
+                  onsubmit="return confirm('Are you sure you want to delete this response?');" 
+                  style="display:inline;">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reponse.id) }}">
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="5">No responses found</td>
+    </tr>
+{% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

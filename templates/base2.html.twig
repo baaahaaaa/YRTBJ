@@ -20,7 +20,7 @@
       {% block nav %}
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
-          <a class="sidebar-brand brand-logo">
+          <a class="sidebar-brand brand-logo"href="{{ path('home') }}">
             <img src="{{ asset('images2/Sky.png') }}" alt="logo" style="width: 150px; height: auto;" />
           </a>
           <a class="sidebar-brand brand-logo-mini pl-4 pt-3">
@@ -29,25 +29,25 @@
         </div>
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link">
+            <a class="nav-link" href="{{ path('dashboard') }}">
               <i class="mdi mdi-home menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">
+            <a class="nav-link" href="{{ path('app_course_index') }}">
               <i class="mdi mdi-contacts menu-icon"></i>
               <span class="menu-title">Courses</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">
+            <a class="nav-link" href="{{ path('app_event_index') }}">
               <i class="mdi mdi-contacts menu-icon"></i>
               <span class="menu-title">Events</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">
+            <a class="nav-link" href="{{ path('app_internship_index') }}">
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
               <span class="menu-title">Internships</span>
             </a>
@@ -59,13 +59,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">
+            <a class="nav-link" href="{{ path('app_reponse_index') }}">
               <i class="mdi mdi-table-large menu-icon"></i>
               <span class="menu-title">Complaints</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">
+            <a class="nav-link" href="{{ path('app_user_index') }}">
               <i class="mdi mdi-file-document-box menu-icon"></i>
               <span class="menu-title">Users</span>
             </a>

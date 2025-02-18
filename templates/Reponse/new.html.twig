@@ -1,0 +1,53 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}New Complaint Response{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title">Create New Complaint Response</h3>
+                    </div>
+                    <div class="card-body">
+                        {# Affichage des erreurs globales #}
+                        {% if errors is defined %}
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {% for error in errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        {{ form_start(form) }}
+                        
+                        <div class="form-group mb-3">
+                            <label for="description" class="form-label">Réponse</label>
+                            {{ form_widget(form.description, { 'attr': { 'class': 'form-control', 'rows': 5 } }) }}
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="createdAt" class="form-label">Date de création</label>
+                            {{ form_widget(form.createdAt, { 'attr': { 'class': 'form-control', 'disabled': true } }) }}
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="reclamation" class="form-label">Réclamation associée</label>
+                            {{ form_widget(form.reclamation, { 'attr': { 'class': 'form-control' } }) }}
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="{{ path('app_reponse_index') }}" class="btn btn-light">Back to list</a>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

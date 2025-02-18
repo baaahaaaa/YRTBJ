@@ -3,9 +3,75 @@
 {% block title %}New Reservation{% endblock %}
 
 {% block body %}
-    <h1>Create new Reservation</h1>
+<main class="main">
+    <div class="page-title" data-aos="fade">
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Create new Reservation</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {{ include('reservation/_form.html.twig') }}
+    <section class="section">
+        <div class="container" data-aos="fade-up">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    {{ include('reservation/_form.html.twig') }}
+                </div>
+                <div class="card-footer bg-white">
+                    <a href="{{ path('app_reservation_index') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Back to list
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
-    <a href="{{ path('app_reservation_index') }}">back to list</a>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const eventSelect = document.querySelector('#reservation_event');
+    const nbPlacesInput = document.querySelector('#reservation_NbPlaces');
+    const totalPriceInput = document.querySelector('#reservation_Total_price');
+    
+    // Store event prices
+    const eventPrices = {};
+    {% for event in form.event.vars.choices %}
+        eventPrices[{{ event.value }}] = {{ event.data.Price }};
+    {% endfor %}
+
+    function updateTotalPrice() {
+        const selectedEventId = eventSelect.value;
+        const nbPlaces = parseInt(nbPlacesInput.value) || 0;
+        
+        if (selectedEventId && eventPrices[selectedEventId]) {
+            const eventPrice = eventPrices[selectedEventId];
+            const totalPrice = eventPrice * nbPlaces;
+            totalPriceInput.value = totalPrice.toFixed(2);
+        }
+    }
+
+    // Add event listeners
+    eventSelect.addEventListener('change', updateTotalPrice);
+    nbPlacesInput.addEventListener('input', updateTotalPrice);
+    
+    // Initial calculation
+    updateTotalPrice();
+});
+</script>
+
+<style>
+    .page-title {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+        color: white;
+        padding: 4rem 0 2rem;
+    }
+    .section {
+        padding: 5rem 0;
+    }
+</style>
 {% endblock %}
