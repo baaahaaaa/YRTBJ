@@ -8,9 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: AdminRepository::class)]
 class Admin extends User
 {
-    public function __contstruct()
+    public function getRoles(): array
     {
-        $this->role="ROLE_ADMIN";
+        return ['ROLE_ADMIN']; // Change selon la classe
     }
+
    
 }

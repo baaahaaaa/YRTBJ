@@ -16,7 +16,7 @@ class UserType extends AbstractType
         $builder
             ->add('FirstName')         
             ->add('LastName')
-            ->add('Email')
+            ->add('email')
             ->add('Entry_Date', DateType::class, [
                 'label' => "Date d'entrée",
                 'widget' => 'single_text',
@@ -24,7 +24,6 @@ class UserType extends AbstractType
                 'input' => 'datetime', // Convertit bien la valeur en objet DateTime
             ])
             ->add('Password')
-            ->add('Role')
         ;
     }
 

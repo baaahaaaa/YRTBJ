@@ -23,8 +23,8 @@
     </div>
 
     <div class="form-wrapper">
-        {{ form_widget(form.Email, {'attr': {'placeholder': 'Email Address', 'class': 'form-control'}}) }}
-            {{ form_errors(form.Email, {'attr': {'class': 'invalid-feedback'}}) }}
+        {{ form_widget(form.email, {'attr': {'placeholder': 'Email Address', 'class': 'form-control'}}) }}
+            {{ form_errors(form.email, {'attr': {'class': 'invalid-feedback'}}) }}
         <i class="zmdi zmdi-email"></i>
     </div>
 
@@ -34,15 +34,23 @@
         <i class="zmdi zmdi-calendar"></i>
     </div>
   <div class="form-wrapper">
-    {{ form_widget(form.password.first, {'attr': {'placeholder': 'Password', 'class': 'form-control'}}) }}
-            {{ form_errors(form.password.first, {'attr': {'class': 'invalid-feedback'}}) }}
-    <i class="zmdi zmdi-lock"></i>
+    <div class="password-container">
+        {{ form_widget(form.password.first, {'attr': {'placeholder': 'Password', 'class': 'form-control', 'id': 'password'}}) }}
+        <span class="toggle-password" onclick="togglePassword('password')">
+            <i class="zmdi zmdi-eye"></i>
+        </span>
+    </div>
+    {{ form_errors(form.password.first, {'attr': {'class': 'invalid-feedback'}}) }}
 </div>
 
 <div class="form-wrapper">
-    {{ form_widget(form.password.second, {'attr': {'placeholder': 'Confirm Password', 'class': 'form-control'}}) }}
-            {{ form_errors(form.password.second, {'attr': {'class': 'invalid-feedback'}}) }}
-    <i class="zmdi zmdi-lock"></i>
+    <div class="password-container">
+        {{ form_widget(form.password.second, {'attr': {'placeholder': 'Confirm Password', 'class': 'form-control', 'id': 'confirm-password'}}) }}
+        <span class="toggle-password" onclick="togglePassword('confirm-password')">
+            <i class="zmdi zmdi-eye"></i>
+        </span>
+    </div>
+    {{ form_errors(form.password.second, {'attr': {'class': 'invalid-feedback'}}) }}
 </div>
     <div class="form-wrapper">
         {{ form_widget(form.Domain, {'attr': {'placeholder': 'Domain', 'class': 'form-control'}}) }}
@@ -119,6 +127,47 @@ h2 {
 .btn-primary:hover {
     background-color: #0056b3;
 }
-</style>
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
 
+.password-container .form-control {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+}
+
+.toggle-password:hover {
+    color: #333;
+}
+</style>
+{% endblock %}
+
+{% block js %}
+<script>
+    function togglePassword(fieldId) {
+        let passwordField = document.getElementById(fieldId);
+        let icon = passwordField.nextElementSibling.querySelector("i");
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            icon.classList.remove("zmdi-eye");
+            icon.classList.add("zmdi-eye-off");
+        } else {
+            passwordField.type = "password";
+            icon.classList.remove("zmdi-eye-off");
+            icon.classList.add("zmdi-eye");
+        }
+    }
+</script>
 {% endblock %}

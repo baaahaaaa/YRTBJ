@@ -21,10 +21,11 @@ class Agent extends User implements PasswordAuthenticatedUserInterface
     #[Assert\NotBlank(message: "Le nom est obligatoire.")]
     #[Assert\Length(min: 2, max: 50, minMessage: "Le nom doit contenir au moins {{ limit }} caractères.")]
     protected ?string $LastName = null;
-    public function __contstruct()
+    public function getRoles(): array
     {
-        $this->role="AGENT";
+        return ['ROLE_AGENT']; // Change selon la classe
     }
+
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "La localisation ne peut pas être vide.")]
     #[Assert\Length(

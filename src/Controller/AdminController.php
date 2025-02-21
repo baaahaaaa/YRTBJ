@@ -4,12 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Admin;
 use App\Form\AdminType;
+use App\Entity\User;
 use App\Repository\AdminRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 #[Route('/admin')]
 final class AdminController extends AbstractController
@@ -21,7 +24,33 @@ final class AdminController extends AbstractController
             'admins' => $adminRepository->findAll(),
         ]);
     }
-
+    #[Route('/create-admin', name: 'app_create_admin')]
+    public function createAdmin(EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        // Vérifier si un admin existe déjà
+        $existingAdmin = $entityManager->getRepository(User::class)->findOneBy(['email' => 'admin@example.com']);
+    
+        if ($existingAdmin) {
+            return new Response("⚠️ Un administrateur existe déjà !");
+        }
+    
+        // Créer un nouvel administrateur
+        $admin = new Admin(); // Important : Utiliser Admin et non User
+        $admin->setFirstName('Admin');
+        $admin->setLastName('User');
+        $admin->setEmail('admin@example.com');
+        $admin->setRoles(['ROLE_ADMIN']);
+    
+        // Hacher le mot de passe
+        $hashedPassword = $passwordHasher->hashPassword($admin, 'adminpassword');
+        $admin->setPassword($hashedPassword);
+    
+        // Enregistrer en base de données
+        $entityManager->persist($admin);
+        $entityManager->flush();
+    
+        return new Response("✅ Administrateur créé avec succès !");
+    }
     #[Route('/new', name: 'app_admin_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

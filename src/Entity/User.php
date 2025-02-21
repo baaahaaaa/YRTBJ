@@ -5,20 +5,16 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\Email;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Regex;
-
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ORM\InheritanceType("SINGLE_TABLE")]
 #[ORM\DiscriminatorColumn(name: "type", type: "string")]
 #[ORM\DiscriminatorMap(["admin" => "Admin", "student" => "Student", "tutor" => "Tutor", "agent" => "Agent"])]
-class User
+class User implements UserInterface , PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -27,50 +23,32 @@ class User
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
-    #[Assert\Length(min: 2, max: 50, minMessage: "Le prénom doit contenir au moins {{ limit }} caractères.")]
-    #[Assert\Regex(
-        pattern: "/^[a-zA-ZÀ-ÖØ-öø-ÿ -]+$/u",
-        message: "Le prénom ne peut contenir que des lettres et des espaces."
-    )]
+    #[Assert\Length(min: 2, max: 50)]
     protected ?string $FirstName = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Le nom est obligatoire.")]
-    #[Assert\Length(min: 2, max: 50, minMessage: "Le nom doit contenir au moins {{ limit }} caractères.")]
-    #[Assert\Regex(
-        pattern: "/^[a-zA-ZÀ-ÖØ-öø-ÿ -]+$/u",
-        message: "Le nom ne peut contenir que des lettres et des espaces."
-    )]
+    #[Assert\Length(min: 2, max: 50)]
     protected ?string $LastName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotBlank(message: "L'email est obligatoire.")]
-    #[Assert\Email(message: "L'email {{ value }} n'est pas valide.")]
-    protected ?string $Email = null;
+    #[Assert\Email]
+    protected ?string $email = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    #[Assert\NotBlank(message: "La date d'entrée est obligatoire.")]
-    #[Assert\Type(type: "\DateTimeInterface", message: "La date d'entrée doit être une date valide.")]
     protected ?\DateTimeInterface $Entry_Date = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Le mot de passe est obligatoire.")]
-    #[Assert\Length(
-        min: 8,
-        minMessage: "Votre mot de passe doit contenir au moins {{ limit }} caractères."
-    )]
+    #[Assert\Length(min: 8, minMessage: "Votre mot de passe doit contenir au moins {{ limit }} caractères.")]
     protected ?string $Password = null;
-
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le rôle est obligatoire.")]
-    #[Assert\Choice(choices: ['Agent', 'Student', 'Tutor'], message: "Le rôle doit être Agent, Student ou Tutor.")]
-    protected ?string $Role = null;
 
     public function __construct()
     {
         $this->Entry_Date = new \DateTime(); // Définit la date du jour par défaut
+        $this->roles = ['ROLE_ADMIN']; // Par défaut, un seul rôle admin
     }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -84,7 +62,6 @@ class User
     public function setFirstName(string $FirstName): static
     {
         $this->FirstName = $FirstName;
-
         return $this;
     }
 
@@ -96,19 +73,17 @@ class User
     public function setLastName(string $LastName): static
     {
         $this->LastName = $LastName;
-
         return $this;
     }
 
     public function getEmail(): ?string
     {
-        return $this->Email;
+        return $this->email;
     }
 
-    public function setEmail(string $Email): static
+    public function setEmail(string $email): static
     {
-        $this->Email = $Email;
-
+        $this->email = $email;
         return $this;
     }
 
@@ -120,7 +95,6 @@ class User
     public function setEntryDate(\DateTimeInterface $Entry_Date): static
     {
         $this->Entry_Date = $Entry_Date;
-
         return $this;
     }
 
@@ -132,32 +106,26 @@ class User
     public function setPassword(string $Password): static
     {
         $this->Password = $Password;
-
         return $this;
     }
-
-    public function getRole(): ?string
+    public function getRoles(): array
     {
-        return $this->Role;
+        // Retourne un tableau de rôles, Symfony attend un tableau et non une chaîne
+        return $this->roles ?? ['ROLE_USER'];
+    }
+    
+    public function setRoles(array $roles): self
+{
+    $this->roles = $roles;
+    return $this;
+}
+    public function getUserIdentifier(): string
+    {
+        return $this->email; // Symfony utilise l'email comme identifiant unique
     }
 
-    public function setRole(string $Role): static
+    public function eraseCredentials()
     {
-        $this->Role = $Role;
-
-        return $this;
-    }
-    protected ?string $domain = null;
-
-    public function setDomain(string $domain): self
-    {
-        $this->domain = $domain;
-        return $this;
+        // S'il y a des données sensibles stockées temporairement, on les efface ici
     }
 }
- 
-
-
-
-
-

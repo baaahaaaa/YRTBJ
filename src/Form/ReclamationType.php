@@ -16,22 +16,33 @@ class ReclamationType extends AbstractType
     {
         $builder
         ->add('user_name', TextType::class, [
-            'label' => 'Your Name'
+            'label' => 'Your Name',
+            'required' => false,
+
         ])
         ->add('email', TextType::class, [
-            'label' => 'Your Email'
+            'label' => 'Your Email',
+            'required' => false,
+
         ])
         ->add('subject', ChoiceType::class, [
             'choices'  => [
                 'Problème technique' => 'problème technique',
                 'Problème daccés' => 'Problème daccés',
                 'Autre' => 'autre',
+                'required' => false,
+
             ],
             'placeholder' => 'Sélectionnez un type',
-            'label' => 'Subject'
+            'label' => 'Subject',
+            'required' => false,
         ])
         ->add('description', TextareaType::class, [
-            'label' => 'Description'
+            'label' => 'Description',
+            'required' => false,
+
+            
+
         ])
             ;
         }

@@ -15,6 +15,10 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+    public function canCreateAdmin(): bool
+    {
+        return $this->count(['roles' => ['ROLE_ADMIN']]) === 0;
+    }
 
 //    /**
 //     * @return User[] Returns an array of User objects

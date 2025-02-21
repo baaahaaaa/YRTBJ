@@ -19,7 +19,6 @@ class AdminType extends AbstractType
                 'widget' => 'single_text',
             ])
             ->add('Password')
-            ->add('Role')
         ;
     }
 

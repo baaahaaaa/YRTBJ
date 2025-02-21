@@ -20,18 +20,23 @@ class ReponseType extends AbstractType
         ->add('description', TextareaType::class, [
             'label' => 'Réponse',
             'attr' => ['class' => 'form-control', 'rows' => 5],
+            'required' => false,
         ])
         ->add('createdAt', DateTimeType::class, [
             'widget' => 'single_text',
             'label' => 'Date de création',
             'data' => new \DateTimeImmutable(), // Définit la date actuelle par défaut
             'disabled' => true, // Empêche la modification
+            'required' => false,
+
         ])
         ->add('reclamation', EntityType::class, [
             'class' => Reclamation::class,
             'choice_label' => 'subject', // Affiche le sujet de la réclamation
             'label' => 'Réclamation associée',
             'attr' => ['class' => 'form-control'],
+            'required' => false,
+
         ]);
         
     }

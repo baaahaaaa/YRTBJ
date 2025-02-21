@@ -23,43 +23,41 @@ class StudentType extends AbstractType
             ->add('FirstName', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => ['placeholder' => 'Entrez votre prénom'],
-                'required' => false, // Désactive la validation HTML5
+                'required' => false, 
             ])
             ->add('LastName', TextType::class, [
                 'label' => 'Nom',
                 'attr' => ['placeholder' => 'Entrez votre nom'],
-                'required' => false, // Désactive la validation HTML5
+                'required' => false, 
             ])
-            ->add('Email', EmailType::class, [
-                'label' => 'Email',
+            ->add('email', EmailType::class, [
+                'label' => 'email',
                 'attr' => ['placeholder' => 'Entrez votre email'],
-                'required' => false, // Désactive la validation HTML5
+                'required' => false, 
             ])
             ->add('Entry_Date', DateType::class, [
                 'label' => "Date d'entrée",
                 'widget' => 'single_text',
-                'required' => false, // Désactive la validation HTML5
-                'html5' => false, // Désactive le datepicker HTML5
-                'attr' => ['class' => 'datepicker'], // Ajoute un style personnalisé
+                'required' => false, 
+                'html5' => false, 
+                'attr' => ['class' => 'datepicker'], 
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent correspondre.',
                 'options' => ['attr' => ['class' => 'form-control']],
-                'required' => false, // Désactive la validation HTML5
+                'required' => false, 
                 'first_options'  => ['label' => 'Mot de passe', 'attr' => ['placeholder' => 'Mot de passe']],
                 'second_options' => ['label' => 'Confirmer le mot de passe', 'attr' => ['placeholder' => 'Confirmer le mot de passe']],
             ])
-            ->add('role', HiddenType::class, [
-                'data' => 'Student',
-            ]);
+         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Student::class,
-            'attr' => ['novalidate' => 'novalidate'], // Désactive la validation HTML5 au niveau du formulaire
+            'attr' => ['novalidate' => 'novalidate'], 
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReponseRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReponseRepository::class)]
 class Reponse
@@ -14,30 +15,26 @@ class Reponse
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "La description ne peut pas être vide.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "La description ne doit pas dépasser {{ limit }} caractères."
+    )]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Assert\NotNull(message: "La date de création est obligatoire.")]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'reponses')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull(message: "La réponse doit être liée à une réclamation.")]
     private ?Reclamation $reclamation = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function setId(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    
-
-    
 
     public function getDescription(): ?string
     {

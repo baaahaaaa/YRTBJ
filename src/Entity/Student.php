@@ -15,8 +15,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class Student extends User implements PasswordAuthenticatedUserInterface
 {
         
-    public function __contstruct()
+    public function getRoles(): array
     {
-        $this->role="ROLE_STUDENT";
+        return ['ROLE_STUDENT']; // Change selon la classe
     }
 }

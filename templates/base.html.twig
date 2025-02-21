@@ -21,6 +21,8 @@
         <link href="{{ asset('vendor/aos/aos.css') }}" rel="stylesheet">
         <link href="{{ asset('vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
         <link href="{{ asset('vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     {% endblock %}
 </head>
@@ -112,9 +114,18 @@
 }
                                        </script>
                              </li>
-    
+
                             
                         </ul>
+                        <ul>
+            {% if app.user %}
+                <li>
+                    <button class="profile-button" onclick="window.location.href='{{ path('app_profile') }}'">
+                        {{ app.user.FirstName|slice(0, 1) }}{{ app.user.LastName|slice(0, 1) }}
+                    </button>
+                </li>
+            {% endif %}
+        </ul>
                     </nav>
                 {% endblock %}
             </div>

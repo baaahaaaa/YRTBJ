@@ -29,8 +29,8 @@ class TutorType extends AbstractType
             'label' => 'Nom',
             'attr' => ['placeholder' => 'Entrez votre nom'],
         ])
-        ->add('Email', EmailType::class, [
-            'label' => 'Email',
+        ->add('email', EmailType::class, [
+            'label' => 'email',
             'attr' => ['placeholder' => 'Entrez votre email'],
         ])
         ->add('Entry_Date', DateType::class, [
@@ -78,9 +78,7 @@ class TutorType extends AbstractType
         ])
 
 
-        ->add('role', HiddenType::class, [
-            'data' => 'Tutor',
-        ]);
+       ;
     }
 
 

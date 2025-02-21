@@ -96,9 +96,9 @@
                 <li><span>ID :</span> {{ user.id }}</li>
                 <li><span>Prénom :</span> {{ user.FirstName }}</li>
                 <li><span>Nom :</span> {{ user.LastName }}</li>
-                <li><span>Email :</span> {{ user.Email }}</li>
+                <li><span>Email :</span> {{ user.email }}</li>
                 <li><span>Date d'Entrée :</span> {{ user.EntryDate ? user.EntryDate|date('Y-m-d') : 'N/A' }}</li>
-                <li><span>Rôle :</span> {{ user.Role }}</li>
+                <li><span>Rôle :</span> {{ user.roles|join(', ') }}</li>
             </ul>
             <div class="btn-group">
                 <a href="{{ path('app_user_index') }}" class="btn btn-secondary">Retour à la liste</a>

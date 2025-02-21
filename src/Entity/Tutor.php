@@ -16,11 +16,10 @@ class Tutor extends User implements PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $Domain = null;
 
-    public function __contstruct()
+    public function getRoles(): array
     {
-        $this->role="TUTOR";
+        return ['ROLE_TUTOR']; // Change selon la classe
     }
-
     public function getDomain(): ?string
     {
         return $this->Domain;
