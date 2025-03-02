@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
+
 
 class StudentType extends AbstractType
 {
@@ -50,6 +52,7 @@ class StudentType extends AbstractType
                 'first_options'  => ['label' => 'Mot de passe', 'attr' => ['placeholder' => 'Mot de passe']],
                 'second_options' => ['label' => 'Confirmer le mot de passe', 'attr' => ['placeholder' => 'Confirmer le mot de passe']],
             ])
+           
          ;
     }
 

@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -44,11 +45,41 @@ class User implements UserInterface , PasswordAuthenticatedUserInterface
     #[Assert\Length(min: 8, minMessage: "Votre mot de passe doit contenir au moins {{ limit }} caractères.")]
     protected ?string $Password = null;
 
+   
+
+
+
+    #[ORM\Column(type: 'string', nullable: true)]    
+    protected $activationToken;
+
+    #[ORM\Column(type: 'boolean')]
+    protected $isActive = false;
+    public function getActivationToken(): ?string
+    {
+        return $this->activationToken;
+    }
+
+    public function setActivationToken(string $activationToken): self
+    {
+        $this->activationToken = $activationToken;
+        return $this;
+    }
+    public function getIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+        return $this;
+    }
     public function __construct()
     {
-        $this->Entry_Date = new \DateTime(); // Définit la date du jour par défaut
-        $this->roles = ['ROLE_ADMIN']; // Par défaut, un seul rôle admin
+        $this->Entry_Date = new \DateTime(); 
+        $this->roles = ['ROLE_USER'];
     }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -114,11 +145,13 @@ class User implements UserInterface , PasswordAuthenticatedUserInterface
         return $this->roles ?? ['ROLE_USER'];
     }
     
-    public function setRoles(array $roles): self
-{
-    $this->roles = $roles;
-    return $this;
-}
+    public function setRoles(?array $roles): self
+    {
+        $this->roles = $roles ?? ['ROLE_USER'];
+        return $this;
+    }
+    
+
     public function getUserIdentifier(): string
     {
         return $this->email; // Symfony utilise l'email comme identifiant unique
@@ -128,4 +161,6 @@ class User implements UserInterface , PasswordAuthenticatedUserInterface
     {
         // S'il y a des données sensibles stockées temporairement, on les efface ici
     }
+
+  
 }

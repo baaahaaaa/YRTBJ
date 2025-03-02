@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+
 class AgentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -71,7 +72,10 @@ class AgentType extends AbstractType
             'attr' => ['placeholder' => "Entrez le nom de l'entreprise"],
             'required' => false,
             
-        ]);}
+        ])
+        ;
+    
+        ;}
 
     public function configureOptions(OptionsResolver $resolver): void
     {

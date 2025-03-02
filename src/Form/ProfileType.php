@@ -20,7 +20,7 @@ class ProfileType extends AbstractType
             ->add('LastName', TextType::class)
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class, [
-                'required' => false, // Si tu ne veux pas que le mot de passe soit obligatoire
+                'required' => true, // Si tu ne veux pas que le mot de passe soit obligatoire
             ])
             ->add('save', SubmitType::class, ['label' => 'Sauvegarder']); // Bouton "Sauvegarder"
     }

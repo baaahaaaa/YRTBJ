@@ -1,8 +1,9 @@
-<?php
+<?php 
 
 namespace App\Entity;
 
 use App\Repository\ReponseRepository;
+use App\Entity\Reclamation;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -27,7 +28,7 @@ class Reponse
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'reponses')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete:"CASCADE")]
     #[Assert\NotNull(message: "La réponse doit être liée à une réclamation.")]
     private ?Reclamation $reclamation = null;
 
@@ -44,7 +45,6 @@ class Reponse
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -56,7 +56,6 @@ class Reponse
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -68,7 +67,6 @@ class Reponse
     public function setReclamation(?Reclamation $reclamation): static
     {
         $this->reclamation = $reclamation;
-
         return $this;
     }
 }

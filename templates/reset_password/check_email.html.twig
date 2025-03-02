@@ -1,0 +1,89 @@
+
+{% block title %}Réinitialisation du Mot de Passe Envoyée{% endblock %}
+
+{% block body %}
+<div class="password-reset-container">
+    <div class="password-reset-card">
+        <h2 class="text-center">📩 Email de Réinitialisation Envoyé</h2>
+        <p class="text-center">
+            Si un compte correspond à votre adresse email, un email contenant un lien de réinitialisation vous a été envoyé.
+            Ce lien expirera dans <strong>{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}</strong>.
+        </p>
+        <p class="text-center">
+            Si vous ne recevez pas d'email, vérifiez votre dossier spam ou 
+            <a href="{{ path('app_forgot_password_request') }}" class="retry-link">essayez à nouveau</a>.
+        </p>
+        <div class="text-center">
+            <a href="{{ path('home') }}" class="btn btn-primary">Retour à l'Accueil</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .password-reset-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background: linear-gradient(135deg, #007bff, #00d4ff);
+    }
+    
+    .password-reset-card {
+        background: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        text-align: center;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+    
+    h2 {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+    }
+    
+    p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 15px;
+    }
+    
+    .retry-link {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    .retry-link:hover {
+        text-decoration: underline;
+    }
+    
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}

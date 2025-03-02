@@ -1,0 +1,52 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Statistiques des Utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center">Statistiques des Utilisateurs</h1>
+
+        <!-- Cartes des Statistiques -->
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Total Utilisateurs</div>
+                    <div class="card-body">
+                        <h2 id="totalUsers">Chargement...</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Utilisateurs par Rôle</div>
+                    <div class="card-body">
+                        <canvas id="usersByRoleChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-header">Inscriptions Mensuelles</div>
+                    <div class="card-body">
+                        <canvas id="monthlyRegistrationsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inclure le fichier charts.js -->
+    <script src="{{ asset('js2/chart1.js') }}"></script>
+
+    <script>
+        // Charger les statistiques via l'API et mettre à jour les graphiques
+        document.addEventListener("DOMContentLoaded", function () {
+            loadTotalUsers();
+            loadUsersByRole();
+            loadMonthlyRegistrations();
+        });
+    </script>
+
+{% endblock %}

@@ -51,16 +51,15 @@ class Reclamation
     private ?string $email = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-     private ?\DateTimeInterface $createdat = null;
+    private ?\DateTimeInterface $createdat = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    
     private ?\DateTimeInterface $updatedat = null;
 
     /**
      * @var Collection<int, Reponse>
      */
-    #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'reclamation' ,  cascade: ["persist"] )]
+    #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'reclamation', cascade: ["persist", "remove"], orphanRemoval: true)]
     private Collection $reponses;
 
     public function __construct()
@@ -81,7 +80,6 @@ class Reclamation
     public function setSubject(string $subject): static
     {
         $this->subject = $subject;
-
         return $this;
     }
 
@@ -93,7 +91,6 @@ class Reclamation
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -105,7 +102,6 @@ class Reclamation
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -117,7 +113,6 @@ class Reclamation
     public function setUserName(string $user_name): static
     {
         $this->user_name = $user_name;
-
         return $this;
     }
 
@@ -129,7 +124,6 @@ class Reclamation
     public function setStatut(string $statut): static
     {
         $this->statut = $statut;
-
         return $this;
     }
 
@@ -141,7 +135,6 @@ class Reclamation
     public function setCreatedat(\DateTimeInterface $createdat): static
     {
         $this->createdat = $createdat;
-
         return $this;
     }
 
@@ -153,7 +146,6 @@ class Reclamation
     public function setUpdatedat(\DateTimeInterface $updatedat): static
     {
         $this->updatedat = $updatedat;
-
         return $this;
     }
 
@@ -171,19 +163,16 @@ class Reclamation
             $this->reponses->add($reponse);
             $reponse->setReclamation($this);
         }
-
         return $this;
     }
 
     public function removeReponse(Reponse $reponse): static
     {
         if ($this->reponses->removeElement($reponse)) {
-            // set the owning side to null (unless already changed)
             if ($reponse->getReclamation() === $this) {
                 $reponse->setReclamation(null);
             }
         }
-
         return $this;
     }
 }

@@ -9,54 +9,58 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
-
-
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface; // Correction du namespace
 
 class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile')]
-public function viewProfile(): Response
-{
-    // Vérifier si l'utilisateur est authentifié
-    $user = $this->getUser();
+    public function viewProfile(): Response
+    {
+        // Vérifier si l'utilisateur est authentifié
+        $user = $this->getUser();
 
-    // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
-    if (!$user) {
-        return $this->redirectToRoute('app_login');
+        
+        // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        // Rendre la vue avec les informations de l'utilisateur
+        return $this->render('profile/view.html.twig', [
+            'user' => $user,
+        ]);
     }
-
-    // Rendre la vue avec les informations de l'utilisateur
-    return $this->render('profile/view.html.twig', [
-        'user' => $user,
-    ]);
-}
-
 
     #[Route('/profile/edit', name: 'app_profile_edit')]
-public function editProfile(Request $request, EntityManagerInterface $entityManager): Response
-{
-    // Récupérer l'utilisateur actuellement connecté
-    $user = $this->getUser();
+    public function editProfile(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        // Récupérer l'utilisateur actuellement connecté
+        $user = $this->getUser();
 
-    // Créer un formulaire pour modifier son profil
-    $form = $this->createForm(ProfileType::class, $user);
-    $form->handleRequest($request);
+        // Créer un formulaire pour modifier son profil
+        $form = $this->createForm(ProfileType::class, $user);
+        $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-        // Sauvegarder les modifications dans la base de données
-        $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Vérifier si un nouveau mot de passe a été fourni
+            $plainPassword = $form->get('password')->getData();
+            if ($plainPassword) {
+                // Encoder le mot de passe
+                $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
+            }
 
-        // Ajouter un message de succès
-        $this->addFlash('success', 'Profil mis à jour avec succès !');
+            // Sauvegarder les modifications dans la base de données
+            $entityManager->flush();
 
-        // Rediriger vers la page du profil
-        return $this->redirectToRoute('app_profile');
+            // Ajouter un message de succès
+            $this->addFlash('success', 'Profil mis à jour avec succès !');
+
+            // Rediriger vers la page du profil
+            return $this->redirectToRoute('app_profile');
+        }
+
+        return $this->render('profile/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
-
-    return $this->render('profile/index.html.twig', [
-        'form' => $form->createView(),
-    ]);
-}
-
 }

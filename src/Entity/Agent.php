@@ -23,9 +23,9 @@ class Agent extends User implements PasswordAuthenticatedUserInterface
     protected ?string $LastName = null;
     public function getRoles(): array
     {
-        return ['ROLE_AGENT']; // Change selon la classe
+        return ['ROLE_AGENT']; // Change selon la cl    asse
     }
-
+    
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "La localisation ne peut pas être vide.")]
     #[Assert\Length(

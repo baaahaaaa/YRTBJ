@@ -1,0 +1,17 @@
+/* Styles personnalisés pour les boutons verts */
+.btn-custom-green {
+    background-color: #28a745; /* Vert principal */
+    color: #fff;              /* Texte blanc */
+    padding: 0.5rem 1rem;     /* Dimensions du bouton */
+    border-radius: 0.25rem;   /* Coins légèrement arrondis */
+    font-size: 1rem;          /* Taille du texte */
+    text-decoration: none;    /* Pas de soulignement */
+    border: none;             /* Supprime la bordure */
+    display: inline-block;    /* S'assure que le bouton reste en ligne */
+  }
+  
+  .btn-custom-green:hover {
+    background-color: #218838; /* Couleur au survol */
+    color: #fff;
+  }
+  

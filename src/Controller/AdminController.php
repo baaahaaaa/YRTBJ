@@ -25,10 +25,10 @@ final class AdminController extends AbstractController
         ]);
     }
     #[Route('/create-admin', name: 'app_create_admin')]
-    public function createAdmin(EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    public function NewAdmin(EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         // Vérifier si un admin existe déjà
-        $existingAdmin = $entityManager->getRepository(User::class)->findOneBy(['email' => 'admin@example.com']);
+        $existingAdmin = $entityManager->getRepository(User::class)->findOneBy(['email' => 'admin@gmail.com']);
     
         if ($existingAdmin) {
             return new Response("⚠️ Un administrateur existe déjà !");
@@ -37,12 +37,12 @@ final class AdminController extends AbstractController
         // Créer un nouvel administrateur
         $admin = new Admin(); // Important : Utiliser Admin et non User
         $admin->setFirstName('Admin');
-        $admin->setLastName('User');
-        $admin->setEmail('admin@example.com');
+        $admin->setLastName('Admin');
+        $admin->setEmail('admin@gmail.com');
         $admin->setRoles(['ROLE_ADMIN']);
     
         // Hacher le mot de passe
-        $hashedPassword = $passwordHasher->hashPassword($admin, 'adminpassword');
+        $hashedPassword = $passwordHasher->hashPassword($admin, 'adminmdp123');
         $admin->setPassword($hashedPassword);
     
         // Enregistrer en base de données

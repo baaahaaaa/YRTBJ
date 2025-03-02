@@ -12,7 +12,7 @@ security:
 
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt)|css|images|js)/  # Exclude development routes
             security: false
 
         main:
@@ -22,31 +22,26 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
+                default_target_path: home  # Redirect to home page after successful login
                 username_parameter: email
                 password_parameter: password
-                provider: app_user_provider
                 enable_csrf: true
 
             logout:
                 path: app_logout
+                target: app_login  # Redirect to login page after logout
 
             remember_me:
                 secret: '%kernel.secret%'
-                lifetime: 604800 # 1 semaine
+                lifetime: 604800 # 1 week
                 path: /
                 always_remember_me: false
 
     access_control:
-        - { path: ^/dashboard, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_ADMIN}
-        - { path: ^/profile, roles: ROLE_STUDENT}
-        - { path: ^/profile, roles: ROLE_TUTOR}
-        - { path: ^/profile, roles: ROLE_AGENT}
-        - { path: ^/dashboard/course, roles: ROLE_TUTOR }
-
-       
-
-
-
+        # Allow non-authenticated users to access login and activation pages        
+        # Restrict profile and home to authenticated users only
+        - {path: /home, roles: IS_AUTHENTICATED_FULLY }
+        - {path: /profile, roles: IS_AUTHENTICATED_FULLY }
+        - {path: /dashboard, roles: ROLE_ADMIN}
 
 

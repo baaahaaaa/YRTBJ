@@ -1,0 +1,138 @@
+
+{% block title %}🔐 Réinitialisation du mot de passe{% endblock %}
+
+{% block body %}
+<div class="password-reset-container">
+    <div class="password-reset-card">
+        <h2>🔑 Réinitialiser votre mot de passe</h2>
+
+        <!-- Affichage des erreurs -->
+        {% for flash_error in app.flashes('reset_password_error') %}
+            <div class="alert alert-danger error-box" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+
+        <p class="info-text">
+            Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.
+        </p>
+
+        {{ form_start(requestForm, {'attr': {'class': 'reset-form'}}) }}
+            <div class="form-group">
+                {{ form_label(requestForm.email, 'Adresse Email', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(requestForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre email'}}) }}
+                <small class="form-text text-muted">Assurez-vous d'entrer un email valide.</small>
+            </div>
+
+            <button class="btn btn-primary btn-block">📩 Envoyer le lien de réinitialisation</button>
+        {{ form_end(requestForm) }}
+
+        <div class="text-center mt-3">
+            <a href="{{ path('app_login') }}" class="back-link">🔙 Retour à la connexion</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    /* Conteneur principal */
+    .password-reset-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background: linear-gradient(135deg, #007bff, #00d4ff);
+    }
+
+    /* Carte de réinitialisation */
+    .password-reset-card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        max-width: 450px;
+        text-align: center;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Titre */
+    h2 {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Texte d'information */
+    .info-text {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    /* Champs de formulaire */
+    .form-group {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #444;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-text {
+        font-size: 12px;
+    }
+
+    /* Bouton d'envoi */
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        padding: 12px;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Message d'erreur */
+    .error-box {
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    /* Lien de retour */
+    .back-link {
+        font-size: 14px;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}

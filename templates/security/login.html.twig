@@ -1,5 +1,4 @@
 
-
 {% block css %}
 <style>
 body {
@@ -12,7 +11,7 @@ body {
     margin: 0;
 }
 
-.login-container {
+.custom-login-container {
     background: white;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -21,25 +20,25 @@ body {
     width: 400px;
 }
 
-h1 {
+.custom-h1 {
     color: #28a745;
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 10px;
 }
 
-p {
+.custom-p {
     font-size: 14px;
     color: #333;
     margin-bottom: 20px;
 }
 
-.form-group {
+.custom-form-group {
     margin-bottom: 15px;
     text-align: left;
 }
 
-.form-group label {
+.custom-form-group label {
     font-weight: bold;
     color: #333;
     font-size: 14px;
@@ -47,7 +46,7 @@ p {
     margin-bottom: 5px;
 }
 
-.form-group input {
+.custom-form-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -55,12 +54,12 @@ p {
     font-size: 14px;
 }
 
-.form-group input:focus {
+.custom-form-group input:focus {
     border-color: #28a745;
     outline: none;
 }
 
-button.login-button {
+.custom-login-button {
     width: 100%;
     padding: 10px;
     background: #28a745;
@@ -73,11 +72,11 @@ button.login-button {
     margin-top: 10px;
 }
 
-button.login-button:hover {
+.custom-login-button:hover {
     background: #218838;
 }
 
-.register-link, .forgot-password {
+.custom-register-link, .custom-forgot-password {
     display: block;
     color: #6c757d;
     text-decoration: none;
@@ -85,38 +84,59 @@ button.login-button:hover {
     margin-top: 10px;
 }
 
-.register-link:hover, .forgot-password:hover {
+.custom-register-link:hover, .custom-forgot-password:hover {
     text-decoration: underline;
     color: #0056b3;
+}
+
+/* 🔹 Style du QR Code */
+.qr-code-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.qr-code-container h4 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.qr-code-container img {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
 }
 </style>
 {% endblock %}
 
 {% block body %}
-<div class="login-container">
-    <h1>Connexion</h1>
+<div class="custom-login-container">
+    <h1 class="custom-h1">Connexion</h1>
+    
     {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}
-            </div>
-        {% endif %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
     <form action="{{ path('app_login') }}" method="POST">
-       
-        <div class="form-group">
+        <div class="custom-form-group">
             <label for="username">Email</label>
-               <input type="text" name="email" value="{{ last_username }}" required autofocus>
+            <input type="text" name="email" value="{{ last_username }}" required autofocus>
         </div>
 
-        <div class="form-group">
+        <div class="custom-form-group">
             <label for="password">Mot de passe</label>
-          <input type="password" name="password" required>
-          </div>
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="password" name="password" required>
+        </div>
+        
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <button type="submit" class="login-button">Se connecter</button>
-            <a class="forgot-password">Mot de passe oublié ?</a>
-
+        <button type="submit" class="custom-login-button">Se connecter</button>
+        <a href="{{ path('app_forgot_password_request') }}" class="custom-forgot-password">Mot de passe oublié ?</a>
     </form>
+
 
 </div>
 {% endblock %}

@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
+
 
 class TutorType extends AbstractType
 {
@@ -52,6 +54,7 @@ class TutorType extends AbstractType
                 new Length(['min' => 6, 'minMessage' => 'Le mot de passe doit contenir au moins 6 caractères']),
             ],
         ])
+       
         ->add('Domain', ChoiceType::class, [
             'choices' => [
                 'Mathématiques' => 'math',
