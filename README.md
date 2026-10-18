@@ -61,3 +61,7 @@ Backend
 ├── var/            # Cache & logs
 ├── vendor/         # Dépendances Composer
 └── README-Symfony.md
+
+## Local environment setup
+
+Copy `.env.example` to `.env` on your development machine and replace all placeholders with local values. Never commit real credentials or tokens. The project previously tracked `.env`; any secret that was in that history must be rotated. Removing `.env` from the latest branch does not erase past commits.
